@@ -207,3 +207,236 @@ body {
         justify-content: center;
     }
 }
+
+/* ========================================
+   ===== AMÉLIORATIONS RESPONSIVE =====
+   ======================================== */
+
+/* --- Corrections pour les très petits écrans (téléphones, < 600px) --- */
+@media screen and (max-width: 600px) {
+
+    /* HEADER : Passe en colonne et centre tout */
+    #tête {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    #tête div {
+        justify-content: center;
+    }
+
+    #tête h1 {
+        font-size: 1.5rem; /* Réduit la taille du titre */
+    }
+
+    /* MENU : Réduit l'espacement et taille des liens */
+    .nav_links ul, .menu ul {
+        gap: 0.8rem;
+        padding: 0;
+    }
+
+    .nav_links a, .menu a {
+        font-size: 0.9rem;
+        padding: 0.3rem 0;
+    }
+
+    /* MAIN : Réduit les marges latérales */
+    #corps {
+        padding: 0 1rem;
+        margin: 1.5rem auto;
+    }
+
+    /* PAGE ACCUEIL (index.html) : Ajuste le bloc d'intro */
+    .intro ul {
+        padding-left: 1.5rem; /* Aligne mieux les puces */
+    }
+
+    .intro ul li {
+        font-size: 1rem;
+    }
+
+    /* BOUTON : Le rend plus "tap-friendly" et réduit son padding */
+    .btn_action {
+        margin: 2rem 0;
+        padding: 1rem;
+    }
+
+    .btn_action p {
+        font-size: 1.1rem;
+    }
+
+    .btn_action button a {
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    /* PAGE SERVICES (service.html) : Améliore l'affichage des services */
+    #service ul {
+        padding: 0;
+    }
+
+    #service ul li {
+        list-style: none;
+        margin-bottom: 2rem;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    #service ul li h3 {
+        font-size: 1.2rem;
+        margin-top: 0;
+    }
+
+    /* Les images de services prennent toute la largeur */
+    #service ul li img {
+        width: 100% !important; /* Force l'image à 100% */
+        height: auto !important; /* Maintient les proportions */
+        max-height: 200px; /* Mais pas trop haute */
+        margin: 0.5rem 0;
+    }
+
+    /* PAGE CONTACT (contact.html) : Ajuste les blocs */
+    #corps ul li {
+        padding: 1rem;
+        font-size: 1rem;
+        word-break: break-word; /* Coupe les longs mots/URLs */
+    }
+
+    #corps a[href^="tel"], #corps a[href^="mailto"] {
+        margin-left: 0; /* Remet à zéro sur mobile */
+        display: inline-block; /* Évite les chevauchements */
+        margin-top: 0.3rem;
+    }
+
+    /* PAGE FAQ (faq.html) : Ajuste le texte d'intro */
+    .intro-faq {
+        padding: 1.2rem;
+        font-size: 1rem;
+    }
+
+    .faq-question {
+        padding: 1rem;
+        font-size: 0.95rem;
+        padding-right: 2.5rem; /* Garde de l'espace pour l'icône */
+    }
+
+    .faq-question::after {
+        right: 1rem;
+    }
+
+    .faq-reponse {
+        font-size: 0.95rem;
+    }
+
+    /* FOOTER : Réduit la taille des liens sociaux */
+    #pied {
+        padding: 1.5rem 1rem;
+    }
+
+    #pied h2 {
+        font-size: 1.1rem;
+    }
+
+    #pied ul {
+        gap: 1.5rem;
+    }
+
+    #pied a {
+        font-size: 1.2rem;
+    }
+}
+
+/* --- Ajustements pour les tablettes (entre 601px et 900px) --- */
+@media screen and (min-width: 601px) and (max-width: 900px) {
+
+    /* MENU : Légèrement plus compact */
+    .nav_links ul, .menu ul {
+        gap: 1rem;
+    }
+
+    /* MAIN : Padding standard */
+    #corps {
+        padding: 0 1.5rem;
+    }
+
+    /* PAGE SERVICES : Améliore la grille des services */
+    #service ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+        gap: 1.5rem;
+        padding: 0;
+    }
+
+    #service ul li {
+        list-style: none;
+        margin-bottom: 0;
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+    }
+
+    #service ul li img {
+        width: 100% !important;
+        height: 150px !important; /* Hauteur fixe pour harmonisation */
+        object-fit: cover;
+        margin: 0.5rem 0;
+        order: -1; /* Met l'image en premier */
+    }
+
+    #service ul li h3 {
+        font-size: 1.1rem;
+        margin: 0.5rem 0;
+    }
+
+    #service ul li p {
+        font-size: 0.95rem;
+    }
+}
+
+/* --- Améliorations pour les très grands écrans ( > 1400px ) --- */
+@media screen and (min-width: 1400px) {
+
+    body {
+        background-color: #f0f0f0; /* Léger changement pour les grands écrans */
+    }
+
+    #corps {
+        max-width: 1300px; /* Augmente la largeur max du contenu */
+        padding: 0 2rem;
+    }
+
+    /* PAGE SERVICES : Passe à 3 colonnes sur très grand écran */
+    #service ul {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    #service ul li {
+        margin-bottom: 0;
+        transition: transform 0.2s ease;
+    }
+
+    #service ul li:hover {
+        transform: translateY(-5px);
+    }
+
+    /* PAGE DEMO : Un peu plus d'espace dans les galeries */
+    .block > div {
+        gap: 1.5rem;
+    }
+}
+
+/* --- Petit correctif pour le JS de la FAQ --- */
+/* (Ce code est déjà bon, mais je le remets ici pour référence) */
+.faq-item.active .faq-reponse {
+    max-height: 300px; /* Assurez-vous que c'est assez grand pour votre contenu */
+    padding: 1.2rem 1.5rem;
+    opacity: 1;
+    border-left-color: #ffaa00;
+}
