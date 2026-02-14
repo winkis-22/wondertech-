@@ -1,0 +1,33 @@
+/* ===== PAGE CONTACT ===== */
+
+#corps p:first-of-type {
+    font-size: 1.3rem;
+    color: #003366;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#corps ul li {
+    background: white;
+    margin: 1rem 0;
+    padding: 1.2rem 1.8rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    list-style: none;
+    border-left: 4px solid #ffaa00;
+    font-size: 1.1rem;
+}
+
+#corps a[href^="tel"], 
+#corps a[href^="mailto"] {
+    color: #003366;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+#corps a[href^="tel"]:hover,
+#corps a[href^="mailto"]:hover {
+    color: #ffaa00;
+    text-decoration: underline;
+}

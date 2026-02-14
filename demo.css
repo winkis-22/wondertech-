@@ -1,0 +1,77 @@
+/* ===== GALLERIE HORIZONTALE (défilement) ===== */
+
+#demonstration {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.block {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.block h3 {
+    color: #003366;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-left: 4px solid #ffaa00;
+    padding-left: 1rem;
+}
+
+/* === GALLERIE SCROLLABLE HORIZONTALE === */
+.block > div {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0.5rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.block > div::-webkit-scrollbar {
+    height: 8px;
+}
+
+.block > div::-webkit-scrollbar-thumb {
+    background: #ffaa00;
+    border-radius: 10px;
+}
+
+.block > div::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 10px;
+}
+
+.block img {
+    flex: 0 0 auto;
+    width: 250px;
+    height: 150px;
+    background: #ddd;
+    border-radius: 8px;
+    object-fit: cover;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.block img:hover {
+    transform: scale(1.02);
+}
+
+/* Optionnel : si tu veux que 2 images soient partiellement visibles pour inciter au scroll */
+@media (min-width: 768px) {
+    .block > div {
+        padding: 1rem 2rem 1rem 0.5rem;
+    }
+}
+
+/* Version mobile : images plus petites */
+@media (max-width: 480px) {
+    .block img {
+        width: 180px;
+        height: 120px;
+    }
+}
