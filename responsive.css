@@ -132,19 +132,77 @@
         font-size: 0.95rem;
     }
 
-    /* PAGE DÉMO */
+    
+    /* PAGE DÉMO - CORRECTION SCROLL MOBILE */
+@media screen and (max-width: 600px) {
     .block {
         padding: 1rem;
+        width: 100%;
+        overflow: hidden; /* Évite les débordements */
     }
 
     .block h3 {
         font-size: 1.1rem;
     }
 
+    /* CORRECTION IMPORTANTE - CONTENEUR SCROLLABLE */
     .block > div {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden; /* Empêche le scroll vertical */
         gap: 0.8rem;
-        padding: 0.5rem 0;
+        padding: 0.5rem 1rem 0.5rem 0; /* Padding à droite pour voir qu'on peut scroller */
+        margin: 0 -1rem; /* Compense le padding du parent */
+        width: auto; /* ← NE PAS FORCER LA LARGEUR */
+        max-width: none;
+        min-width: 0; /* ← IMPORTANT : annule min-width: 100vw */
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        position: relative;
+        left: 0;
+        right: 0;
     }
+
+    /* Images en mobile */
+    .block img {
+        width: 140px; /* Légèrement réduit */
+        height: 100px;
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+    }
+
+    /* Indicateur de scroll (optionnel mais utile) */
+    .block {
+        position: relative;
+    }
+
+    .block::after {
+        content: '';
+        position: absolute;
+        top: 70px; /* Ajuste selon la hauteur de ton h3 + padding */
+        right: 0;
+        bottom: 1rem;
+        width: 30px;
+        background: linear-gradient(to right, transparent, white);
+        pointer-events: none;
+        z-index: 2;
+        opacity: 0.8;
+        display: block;
+    }
+
+    /* Pour le dernier block, éviter le gradient qui dépasse */
+    .block:last-child::after {
+        height: calc(100% - 70px);
+    }
+}
+
+/* Pour les très petits écrans (< 400px) */
+@media screen and (max-width: 400px) {
+    .block img {
+        width: 120px;
+        height: 90px;
+    }
+}
 
     /* FOOTER */
     #pied {
