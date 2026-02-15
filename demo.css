@@ -22,30 +22,31 @@
 }
 
 /* === GALLERIE SCROLLABLE HORIZONTALE === */
-.block > div {
+.gallery-scroll {
     display: flex;
     overflow-x: auto;
     gap: 1rem;
     padding: 1rem 0.5rem;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    position: relative;
 }
 
-.block > div::-webkit-scrollbar {
+.gallery-scroll::-webkit-scrollbar {
     height: 8px;
 }
 
-.block > div::-webkit-scrollbar-thumb {
+.gallery-scroll::-webkit-scrollbar-thumb {
     background: #ffaa00;
     border-radius: 10px;
 }
 
-.block > div::-webkit-scrollbar-track {
+.gallery-scroll::-webkit-scrollbar-track {
     background: #e0e0e0;
     border-radius: 10px;
 }
 
-.block img {
+.gallery-scroll img {
     flex: 0 0 auto;
     width: 250px;
     height: 150px;
@@ -57,20 +58,33 @@
     box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
-.block img:hover {
+.gallery-scroll img:hover {
     transform: scale(1.02);
+}
+
+/* Indicateur de scroll (optionnel) - version desktop */
+.gallery-scroll.scroll-indicator::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 2rem;
+    pointer-events: none;
+    background: linear-gradient(to left, white, transparent);
+    display: none;
 }
 
 /* Optionnel : si tu veux que 2 images soient partiellement visibles pour inciter au scroll */
 @media (min-width: 768px) {
-    .block > div {
+    .gallery-scroll {
         padding: 1rem 2rem 1rem 0.5rem;
     }
 }
 
 /* Version mobile : images plus petites */
 @media (max-width: 480px) {
-    .block img {
+    .gallery-scroll img {
         width: 180px;
         height: 120px;
     }
@@ -78,37 +92,40 @@
 
 /* Version mobile : amélioration du scrolling horizontal */
 @media (max-width: 600px) {
-  .block > div {
-    padding: 1rem 0 1rem 0;        /* pas de padding horizontal sur le conteneur */
-    gap: 0.7rem;                   /* réduire l'espace entre les images si besoin */
-    scroll-snap-type: x mandatory; /* déjà présent mais on le répète pour la priorité */
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    /* Optionnel : largeur min pour forcer le scroll, à ajuster selon nb d'images */
-    min-width: 100vw;     
-  }
-  .block img {
-    width: 150px;
-    height: 100px;
-    flex: 0 0 auto;
-    /* scroll-snap-align déjà présent */
-  }
+    .gallery-scroll {
+        padding: 1rem 0;
+        gap: 0.7rem;
+        scroll-snap-type: x mandatory;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .gallery-scroll img {
+        width: 150px;
+        height: 100px;
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+    }
+    
+    /* Indicateur de scroll pour mobile */
+    .gallery-scroll::after {
+        display: block;
+        content: "";
+        position: sticky;
+        right: 0;
+        width: 30px;
+        height: 100%;
+        background: linear-gradient(to right, transparent, white);
+        flex-shrink: 0;
+        pointer-events: none;
+        z-index: 2;
+    }
 }
 
-/* Effet visuel (optionnel) : gradient à gauche/droite du scroll pour indiquer le scroll possible */
-.block > div {
-  position: relative;
-}
-.block > div::after {
-  content: "";
-  position: absolute;
-  top: 0; right: 0; bottom: 0; width: 2rem;
-  pointer-events: none;
-  background: linear-gradient(to left, white, transparent);
-  display: none;
-}
-@media (max-width: 600px) {
-  .block > div::after {
-    display: block;
-  }
+/* Correction pour très petits écrans */
+@media (max-width: 400px) {
+    .gallery-scroll img {
+        width: 130px;
+        height: 90px;
+    }
 }
