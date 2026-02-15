@@ -75,3 +75,40 @@
         height: 120px;
     }
 }
+
+/* Version mobile : amélioration du scrolling horizontal */
+@media (max-width: 600px) {
+  .block > div {
+    padding: 1rem 0 1rem 0;        /* pas de padding horizontal sur le conteneur */
+    gap: 0.7rem;                   /* réduire l'espace entre les images si besoin */
+    scroll-snap-type: x mandatory; /* déjà présent mais on le répète pour la priorité */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Optionnel : largeur min pour forcer le scroll, à ajuster selon nb d'images */
+    min-width: 100vw;     
+  }
+  .block img {
+    width: 150px;
+    height: 100px;
+    flex: 0 0 auto;
+    /* scroll-snap-align déjà présent */
+  }
+}
+
+/* Effet visuel (optionnel) : gradient à gauche/droite du scroll pour indiquer le scroll possible */
+.block > div {
+  position: relative;
+}
+.block > div::after {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; width: 2rem;
+  pointer-events: none;
+  background: linear-gradient(to left, white, transparent);
+  display: none;
+}
+@media (max-width: 600px) {
+  .block > div::after {
+    display: block;
+  }
+}
