@@ -22,31 +22,30 @@
 }
 
 /* === GALLERIE SCROLLABLE HORIZONTALE === */
-.gallery-scroll {
+.box {
     display: flex;
     overflow-x: auto;
     gap: 1rem;
     padding: 1rem 0.5rem;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    position: relative;
 }
 
-.gallery-scroll::-webkit-scrollbar {
+.box::-webkit-scrollbar {
     height: 8px;
 }
 
-.gallery-scroll::-webkit-scrollbar-thumb {
+.box::-webkit-scrollbar-thumb {
     background: #ffaa00;
     border-radius: 10px;
 }
 
-.gallery-scroll::-webkit-scrollbar-track {
+.box::-webkit-scrollbar-track {
     background: #e0e0e0;
     border-radius: 10px;
 }
 
-.gallery-scroll img {
+.box img {
     flex: 0 0 auto;
     width: 250px;
     height: 150px;
@@ -58,74 +57,31 @@
     box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
-.gallery-scroll img:hover {
+.box img:hover {
     transform: scale(1.02);
 }
-
-/* Indicateur de scroll (optionnel) - version desktop */
-.gallery-scroll.scroll-indicator::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 2rem;
-    pointer-events: none;
-    background: linear-gradient(to left, white, transparent);
-    display: none;
-}
-
-/* Optionnel : si tu veux que 2 images soient partiellement visibles pour inciter au scroll */
-@media (min-width: 768px) {
-    .gallery-scroll {
-        padding: 1rem 2rem 1rem 0.5rem;
+/* ===== CORRECTION POUR LA PAGE DEMO UNIQUEMENT ===== */
+@media (max-width: 768px) {
+    /* Correction pour que #demonstration prenne 50% de l'écran, pas du conteneur */
+    #demonstration {
+        width: 50vw !important;  /* 50% de la largeur de l'écran (viewport width) */
+        margin: 0 auto !important;
+        max-width: none !important; /* Annule le max-width du parent */
+    }
+    
+    #demonstration .box img {
+        width: 200px !important;
+        height: 200px !important;
     }
 }
 
-/* Version mobile : images plus petites */
 @media (max-width: 480px) {
-    .gallery-scroll img {
-        width: 180px;
-        height: 120px;
-    }
-}
-
-/* Version mobile : amélioration du scrolling horizontal */
-@media (max-width: 600px) {
-    .gallery-scroll {
-        padding: 1rem 0;
-        gap: 0.7rem;
-        scroll-snap-type: x mandatory;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+    #demonstration {
+        width: 70vw !important;  /* Un peu plus large sur très petits écrans */
     }
     
-    .gallery-scroll img {
-        width: 150px;
-        height: 100px;
-        flex: 0 0 auto;
-        scroll-snap-align: start;
-    }
-    
-    /* Indicateur de scroll pour mobile */
-    .gallery-scroll::after {
-        display: block;
-        content: "";
-        position: sticky;
-        right: 0;
-        width: 30px;
-        height: 100%;
-        background: linear-gradient(to right, transparent, white);
-        flex-shrink: 0;
-        pointer-events: none;
-        z-index: 2;
-    }
-}
-
-/* Correction pour très petits écrans */
-@media (max-width: 400px) {
-    .gallery-scroll img {
-        width: 130px;
-        height: 90px;
+    #demonstration .box img {
+        width: 160px !important;
+        height: 160px !important;
     }
 }
